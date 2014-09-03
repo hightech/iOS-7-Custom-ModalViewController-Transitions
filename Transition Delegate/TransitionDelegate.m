@@ -3,6 +3,7 @@
 //  CustomTransitionExample
 //
 //  Created by Blanche Faur on 10/24/13.
+//  Updated by Anthony Detamore on 9/03/14.
 //  Copyright (c) 2013 Blanche Faur. All rights reserved.
 //
 
@@ -17,17 +18,15 @@
 //===================================================================
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    AnimatedTransitioning *controller = [[AnimatedTransitioning alloc]init];
-    controller.isPresenting = YES;
+    AnimatedTransitioning *controller = [[AnimatedTransitioning alloc] init];
+    [controller setReverse:NO];
     return controller;
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-//I will fix it later.
-//    AnimatedTransitioning *controller = [[AnimatedTransitioning alloc]init];
-//    controller.isPresenting = NO;
-//    return controller;
-    return nil;
+    AnimatedTransitioning *controller = [[AnimatedTransitioning alloc] init];
+    [controller setReverse:YES];
+    return controller;
 }
 
 - (id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator {

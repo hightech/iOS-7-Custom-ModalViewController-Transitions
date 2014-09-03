@@ -3,6 +3,7 @@
 //  CustomTransitionExample
 //
 //  Created by Blanche Faur on 10/24/13.
+//  Updated by Anthony Detamore on 9/03/14.
 //  Copyright (c) 2013 Blanche Faur. All rights reserved.
 //
 
@@ -10,6 +11,6 @@
 
 @interface AnimatedTransitioning : NSObject <UIViewControllerAnimatedTransitioning>
 
-@property (nonatomic, assign) BOOL isPresenting;
+@property (nonatomic, assign) BOOL reverse;
 
 @end
