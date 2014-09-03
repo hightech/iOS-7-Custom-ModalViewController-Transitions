@@ -10,6 +10,6 @@
 
 @interface AnimatedTransitioning : NSObject <UIViewControllerAnimatedTransitioning>
 
-@property (nonatomic, assign) BOOL isPresenting;
+@property (nonatomic, assign) BOOL reverse;
 
 @end
