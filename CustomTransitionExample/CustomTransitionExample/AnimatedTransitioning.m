@@ -25,20 +25,33 @@
     UIView *inView = [transitionContext containerView];
     SecondViewController *toVC = (SecondViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     MainViewController *fromVC = (MainViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    
-    [inView addSubview:toVC.view];
-    
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    [toVC.view setFrame:CGRectMake(0, screenRect.size.height, fromVC.view.frame.size.width, fromVC.view.frame.size.height)];
-    
-    [UIView animateWithDuration:0.25f
-                     animations:^{
-                         
-                         [toVC.view setFrame:CGRectMake(0, 0, fromVC.view.frame.size.width, fromVC.view.frame.size.height)];
-                     }
-                     completion:^(BOOL finished) {
-                         [transitionContext completeTransition:YES];
-                     }];
+    if (self.isPresenting) {
+        [inView addSubview:toVC.view];
+        
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        [toVC.view setFrame:CGRectMake(0, screenRect.size.height, fromVC.view.frame.size.width, fromVC.view.frame.size.height)];
+        
+        [UIView animateWithDuration:0.25f
+                         animations:^{
+                             
+                             [toVC.view setFrame:CGRectMake(0, 0, fromVC.view.frame.size.width, fromVC.view.frame.size.height)];
+                         }
+                         completion:^(BOOL finished) {
+                             [transitionContext completeTransition:YES];
+                         }];
+    }else{
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        [UIView animateWithDuration:0.25f
+                         animations:^{
+                             
+                             [fromVC.view setFrame:CGRectMake(screenRect.size.width, 0, fromVC.view.frame.size.width, fromVC.view.frame.size.height)];
+                         }
+                         completion:^(BOOL finished) {
+                             [transitionContext completeTransition:YES];
+                             [fromVC.view removeFromSuperview];
+                         }];
+
+    }
 }
 
 
